@@ -8,7 +8,7 @@ experiments which require lots of art to expose otherwise.
 
 ```
  $ mvn clean install
- $ java -jar target/application/concurrency-torture.jar -h
+ $ java -jar /application/target/concurrency-torture.jar -h
 
 ```
 
