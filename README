@@ -8,7 +8,7 @@ Quick-start:
 --------------------------------------------------------------------
 
  $ mvn clean install
- $ java -jar target/concurrency-torture.jar -h
+ $ java -jar target/application/concurrency-torture.jar -h
 
 Caveats:
 --------------------------------------------------------------------
@@ -70,3 +70,23 @@ Developing tests:
  You are encouraged to provide the thorough explanation why particular
  state is required/acceptable/absent/special. Even though harness will
  print the debug output into the console if no description is given.
+
+ Tests may be created in a separate project. To accomplish this, include
+ the following dependency in your project's pom.xml:
+ ```
+		<dependency>
+			<groupId>net.shipilev</groupId>
+			<artifactId>concurrency-torture-api</artifactId>
+			<version>1.0-SNAPSHOT</version>
+		</dependency>
+ ```
+ From there, the `net.shipilev.concurrent.torture.api` interfaces may be
+ imported and implemented. Along with each test, and XML description file
+ should be included (matching the format described above). To run tests 
+ written this way, rename to your jar file to `tests.jar` and place it 
+ alongside the concurrency-torture jar file. This will add the jar to the 
+ classpath so it can be scanned for tests. The next step is to specify 
+ `-package` and `-desc` parameters when running the jar:
+ ```
+ 	$ java -jar concurrency-torture.jar -package 'your.test.package.*' -desc 'your.description.package'
+ ```
