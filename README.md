@@ -4,13 +4,16 @@ This project is the attempt to test/break Java implementations
 on concurrency front. This harness can be used to conduct the fine
 experiments which require lots of art to expose otherwise.
 
-Quick-start:
+## Quick-start:
 --------------------------------------------------------------------
 
+```
  $ mvn clean install
  $ java -jar target/application/concurrency-torture.jar -h
 
-Caveats:
+```
+
+## Caveats:
 --------------------------------------------------------------------
 
 * Most of the tests are probabilistic, and require substantial time
@@ -22,7 +25,7 @@ Caveats:
   there. Consult the command help to figure out the option for it.
 
 
-Understanding tests and Interpreting results:
+## Understanding tests and Interpreting results:
 --------------------------------------------------------------------
 
  The tests so far are folded in Litmus-like tests, where few threads
@@ -38,7 +41,7 @@ Understanding tests and Interpreting results:
  Ordinary users should use results/index.html, which has the full
  interpretation of the results.
 
-Developing tests:
+## Developing tests:
 --------------------------------------------------------------------
 
  If you want to develop a test, you are encouraged to get familiar with
