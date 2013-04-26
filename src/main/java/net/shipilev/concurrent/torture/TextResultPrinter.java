@@ -53,13 +53,14 @@ public class TextResultPrinter {
     private void readDescriptions(Options opts) throws JAXBException {
         Reflections r = new Reflections(
                 new ConfigurationBuilder()
-                        .filterInputsBy(new FilterBuilder().include("net.shipilev.concurrent.torture.desc.*"))
-                        .setUrls(ClasspathHelper.forClassLoader())
+                        .filterInputsBy(new FilterBuilder().include(opts.getDescPackage()))
+                        .setUrls(ClasspathHelper.forManifest())
                         .setScanners(new ResourcesScanner()));
 
         Set<String> resources = r.getResources(new Predicate<String>() {
             @Override
             public boolean apply(String s) {
+//								System.out.println("Matching " + s);
                 return s != null && s.endsWith(".xml");
             }
         });

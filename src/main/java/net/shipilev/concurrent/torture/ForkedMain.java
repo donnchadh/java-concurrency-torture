@@ -65,7 +65,7 @@ public class ForkedMain {
         Reflections r = new Reflections(
                 new ConfigurationBuilder()
                         .filterInputsBy(new FilterBuilder().include(testPackage))
-                        .setUrls(ClasspathHelper.forClassLoader())
+                        .setUrls(ClasspathHelper.forManifest())
                         .setScanners(new SubTypesScanner(), new TypeAnnotationsScanner()));
 
         SortedSet<Class<? extends T>> s = new TreeSet<Class<? extends T>>(new Comparator<Class<? extends T>>() {

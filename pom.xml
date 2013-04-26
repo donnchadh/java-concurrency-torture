@@ -79,6 +79,21 @@
                     </execution>
                 </executions>
             </plugin>
+						<plugin>
+							<groupId>org.apache.maven.plugins</groupId>
+							<artifactId>maven-jar-plugin</artifactId>
+							<configuration>
+								<archive>
+									<manifest>
+										<addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+										<addClasspath>true</addClasspath>
+									</manifest>
+									<manifestEntries>
+										<Class-Path>tests.jar</Class-Path>
+									</manifestEntries>
+								</archive>
+							</configuration>
+						</plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>

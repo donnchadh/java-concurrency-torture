@@ -60,7 +60,7 @@ public class Options {
 
 				OptionSpec<String> descPackage = 
 					parser.accepts("desc", "Package to search for test descriptions").withRequiredArg()
-								.ofType(String.class).describedAs("package")
+								.ofType(String.class).describedAs("desc_package")
 								.defaultsTo("net.shipilev.concurrent.torture.desc.*");
 
         OptionSpec<Integer> loops = parser.accepts("loops", "Number of internal loops")
@@ -115,7 +115,9 @@ public class Options {
 
     public String buildForkedCmdLine() {
         // omit -f, -p, -t
-        return "-r " + resultDir + " -loops " + loops + " -time " + time + " -wtime " + wtime + " -witers " + witers + " -yield " + shouldYield + " -f false";
+        return "-r " + resultDir + " -loops " + loops + " -time " + time + 
+					" -wtime " + wtime + " -witers " + witers + " -yield " + shouldYield + 
+					" -f false" + " -package " + testPackage + " -desc " + descPackage;
     }
 
     public int getLoops() {
