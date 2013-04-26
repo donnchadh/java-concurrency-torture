@@ -47,10 +47,10 @@ public class TextResultPrinter {
 
     public TextResultPrinter(Options opts) throws JAXBException, FileNotFoundException {
         descriptions = new HashMap<String, Test>();
-        readDescriptions();
+        readDescriptions(opts);
     }
 
-    private void readDescriptions() throws JAXBException {
+    private void readDescriptions(Options opts) throws JAXBException {
         Reflections r = new Reflections(
                 new ConfigurationBuilder()
                         .filterInputsBy(new FilterBuilder().include("net.shipilev.concurrent.torture.desc.*"))

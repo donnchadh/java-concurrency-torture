@@ -27,6 +27,7 @@ public class Options {
     private String resultDir;
 		private String testPackage;
     private String testFilter;
+    private String descPackage;
     private int loops;
     private int time;
     private int wtime;
@@ -51,10 +52,16 @@ public class Options {
                 .withOptionalArg().ofType(boolean.class).defaultsTo(false);
 
 				OptionSpec<String> testPackage = parser.accepts("package", "Package to search for tests")
-								.withRequiredArg().ofType(String.class).describedAs("package").defaultsTo("net.shipilev.concurrent.torture.*");
+								.withRequiredArg().ofType(String.class).describedAs("package")
+								.defaultsTo("net.shipilev.concurrent.torture.*");
 
         OptionSpec<String> testFilter = parser.accepts("t", "Regexp selector for tests")
                 .withRequiredArg().ofType(String.class).describedAs("regexp").defaultsTo(".*");
+
+				OptionSpec<String> descPackage = 
+					parser.accepts("desc", "Package to search for test descriptions").withRequiredArg()
+								.ofType(String.class).describedAs("package")
+								.defaultsTo("net.shipilev.concurrent.torture.desc.*");
 
         OptionSpec<Integer> loops = parser.accepts("loops", "Number of internal loops")
                 .withRequiredArg().ofType(int.class).describedAs("N").defaultsTo(10);
@@ -98,6 +105,7 @@ public class Options {
         this.witers = set.valueOf(witers);
         this.testFilter = set.valueOf(testFilter);
 				this.testPackage = set.valueOf(testPackage);
+				this.descPackage = set.valueOf(descPackage);
         this.shouldYield = set.valueOf(shouldYield);
         this.shouldFork = set.valueOf(shouldFork);
         this.parse = set.has(parse);
@@ -144,6 +152,10 @@ public class Options {
 
     public String getTestFilter() {
         return testFilter;
+    }
+
+    public String getDescPackage() {
+        return descPackage;
     }
 
     public boolean shouldFork() {

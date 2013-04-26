@@ -64,13 +64,13 @@ public class XMLtoHTMLResultPrinter {
                 return o1.getName().compareTo(o2.getName());
             }
         });
-        readDescriptions();
+        readDescriptions(opts);
     }
 
-    private void readDescriptions() throws JAXBException {
+    private void readDescriptions(Options opts) throws JAXBException {
         Reflections r = new Reflections(
                 new ConfigurationBuilder()
-                        .filterInputsBy(new FilterBuilder().include("net.shipilev.concurrent.torture.desc.*"))
+                        .filterInputsBy(new FilterBuilder().include(opts.getDescPackage()))
                         .setUrls(ClasspathHelper.forClassLoader())
                         .setScanners(new ResourcesScanner()));
 
