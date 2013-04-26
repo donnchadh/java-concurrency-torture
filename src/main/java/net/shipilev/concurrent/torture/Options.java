@@ -25,6 +25,7 @@ import java.io.IOException;
 
 public class Options {
     private String resultDir;
+		private String testPackage;
     private String testFilter;
     private int loops;
     private int time;
@@ -48,6 +49,9 @@ public class Options {
 
         OptionSpec<Boolean> parse = parser.accepts("p", "Run parser on the result file")
                 .withOptionalArg().ofType(boolean.class).defaultsTo(false);
+
+				OptionSpec<String> testPackage = parser.accepts("package", "Package to search for tests")
+								.withRequiredArg().ofType(String.class).describedAs("package").defaultsTo("net.shipilev.concurrent.torture.*");
 
         OptionSpec<String> testFilter = parser.accepts("t", "Regexp selector for tests")
                 .withRequiredArg().ofType(String.class).describedAs("regexp").defaultsTo(".*");
@@ -93,6 +97,7 @@ public class Options {
         this.wtime = set.valueOf(wtime);
         this.witers = set.valueOf(witers);
         this.testFilter = set.valueOf(testFilter);
+				this.testPackage = set.valueOf(testPackage);
         this.shouldYield = set.valueOf(shouldYield);
         this.shouldFork = set.valueOf(shouldFork);
         this.parse = set.has(parse);
@@ -132,6 +137,10 @@ public class Options {
     public boolean shouldParse() {
         return parse;
     }
+
+		public String getTestPackage() {
+			return testPackage;
+		}
 
     public String getTestFilter() {
         return testFilter;

@@ -58,10 +58,10 @@ public class Main {
                 System.out.println("Running in forked mode...");
                 System.out.println();
 
-                for (Class<? extends ConcurrencyTest> test : filterTests(opts.getTestFilter(), OneActorOneObserverTest.class)) {
+                for (Class<? extends ConcurrencyTest> test : filterTests(opts.getTestPackage(), opts.getTestFilter(), OneActorOneObserverTest.class)) {
                     runForked(opts, test);
                 }
-                for (Class<? extends ConcurrencyTest> test : filterTests(opts.getTestFilter(), TwoActorsOneArbiterTest.class)) {
+                for (Class<? extends ConcurrencyTest> test : filterTests(opts.getTestPackage(), opts.getTestFilter(), TwoActorsOneArbiterTest.class)) {
                     runForked(opts, test);
                 }
             } else {
@@ -116,12 +116,12 @@ public class Main {
 
         Runner r = new Runner(opts);
 
-        for (Class<? extends OneActorOneObserverTest> test : filterTests(opts.getTestFilter(), OneActorOneObserverTest.class)) {
+        for (Class<? extends OneActorOneObserverTest> test : filterTests(opts.getTestPackage(), opts.getTestFilter(), OneActorOneObserverTest.class)) {
             OneActorOneObserverTest<?> instance = test.newInstance();
             r.run(instance);
         }
 
-        for (Class<? extends TwoActorsOneArbiterTest> test : filterTests(opts.getTestFilter(), TwoActorsOneArbiterTest.class)) {
+        for (Class<? extends TwoActorsOneArbiterTest> test : filterTests(opts.getTestPackage(), opts.getTestFilter(), TwoActorsOneArbiterTest.class)) {
             TwoActorsOneArbiterTest<?> instance = test.newInstance();
             r.run(instance);
         }
@@ -188,14 +188,14 @@ public class Main {
     }
 
 
-    private static <T> SortedSet<Class<? extends T>> filterTests(final String filter, Class<T> klass) {
+    private static <T> SortedSet<Class<? extends T>> filterTests(String testPackage, final String filter, Class<T> klass) {
         // God I miss both diamonds and lambdas here.
 
         Pattern pattern = Pattern.compile(filter);
 
         Reflections r = new Reflections(
                 new ConfigurationBuilder()
-                        .filterInputsBy(new FilterBuilder().include("net.shipilev.concurrent.torture.*"))
+                        .filterInputsBy(new FilterBuilder().include(testPackage))
                         .setUrls(ClasspathHelper.forClassLoader())
                         .setScanners(new SubTypesScanner(), new TypeAnnotationsScanner()));
 
