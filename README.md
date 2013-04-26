@@ -5,7 +5,6 @@ on concurrency front. This harness can be used to conduct the fine
 experiments which require lots of art to expose otherwise.
 
 ## Quick-start:
---------------------------------------------------------------------
 
 ```
  $ mvn clean install
@@ -14,7 +13,6 @@ experiments which require lots of art to expose otherwise.
 ```
 
 ## Caveats:
---------------------------------------------------------------------
 
 * Most of the tests are probabilistic, and require substantial time
   to catch all the cases. It is highly recommended to run tests longer
@@ -26,7 +24,6 @@ experiments which require lots of art to expose otherwise.
 
 
 ## Understanding tests and Interpreting results:
---------------------------------------------------------------------
 
  The tests so far are folded in Litmus-like tests, where few threads
  are  executing the test concurrently, sometimes exhibiting races.
@@ -42,13 +39,13 @@ experiments which require lots of art to expose otherwise.
  interpretation of the results.
 
 ## Developing tests:
---------------------------------------------------------------------
 
  If you want to develop a test, you are encouraged to get familiar with
  existing set of tests first. You will have to implement one of the
  test interfaces:
    - OneActorOneObserverTest
    - TwoActorsOneArbiterTest
+
 
  Read up their Javadocs to understand the conditions that are guaranteed
  for those tests. If you need some other test interface/harness support,
@@ -65,6 +62,7 @@ experiments which require lots of art to expose otherwise.
     - FORBIDDEN:        should always be absent
     - KNOWN_ACCEPTABLE: may be present, special known case
     - KNOWN_FORBIDDEN:  should always be absent, special known case
+
 
  KNOWN_* are useful to document known corner cases and/or building the
  negative tests, they are treated as their counterparts, but routinely
