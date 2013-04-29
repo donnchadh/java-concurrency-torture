@@ -82,7 +82,7 @@ the following dependency in your project's pom.xml:
 	</dependency>
 ```
 From there, the `net.shipilev.concurrent.torture.api` interfaces may be
-imported and implemented. Along with each test, and XML description file
+imported and implemented. Along with each test, an XML description file
 should be included (matching the format described above). To run tests 
 written this way, rename to your jar file to `tests.jar` and place it 
 alongside the concurrency-torture jar file. This will add the jar to the 
