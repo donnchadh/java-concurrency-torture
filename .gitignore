@@ -1,0 +1,9 @@
+# Ignore ctags 
+tags
+# Vim swap files
+*.swp
+*.swo
+*.swn
+*.swm
+# Ignore build artifacts
+target
