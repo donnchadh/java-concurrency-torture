@@ -57,11 +57,11 @@ Test interpretation is handled elsewhere, you can see at
 
 Each XML file there describes the test suite, which is the collection of
 tests. It can match the output for each test and mark if that state is:
-- REQUIRED:         should always be present
-- ACCEPTABLE:       may be present, may be absent
-- FORBIDDEN:        should always be absent
-- KNOWN_ACCEPTABLE: may be present, special known case
-- KNOWN_FORBIDDEN:  should always be absent, special known case
+- *REQUIRED*:         should always be present
+- *ACCEPTABLE*:       may be present, may be absent
+- *FORBIDDEN*:        should always be absent
+- *KNOWN_ACCEPTABLE*: may be present, special known case
+- *KNOWN_FORBIDDEN*:  should always be absent, special known case
 
 
 KNOWN_* are useful to document known corner cases and/or building the
